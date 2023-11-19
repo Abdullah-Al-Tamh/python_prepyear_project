@@ -1,0 +1,47 @@
+class The_maneging_window(tk.Tk):
+
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init__(self, *args, **kwargs)
+
+        self.the_father_frame = tk.Frame()
+        self.the_father_frame.grid_columnconfigure(0, weight=1)
+        self.the_father_frame.grid_rowconfigure(0, weight=1)
+        self.the_father_frame.pack(expand=True, fill='both')
+
+        self.pages = {}  # الديكشنري كي اند فاليو بير
+        for p in (Local_page, Secondry_page,
+                  Third_Page):  # هاش ماب تاخذ اسم كل كلاس تخليه كي والفليو هو الكلاس نفسه نحن نقوله البيج نيم يساوي بي دوت نيم قلنا انه هاي النيم تعطيك اسم الكلاس
+            page_name = p.__name__
+            frame = p(Frame1=self.the_father_frame,
+                      The_controller_pages=self)  # هنا حنسوي فريم هذا الفريم هو الكلاس بيج نفسها لانه البيج نفسها اللوكل بيج عندها الفريم ون والكنترولر والفريم يمثل الماستر
+            self.pages[page_name] = frame  # هنا تسند قيمة بالدكشنري
+            frame.grid(row=0, column=0, sticky='nesw')
+        self.get_page(
+            'Local_page')  # وهاذي اشارة الى ان هاذي هي بداية صفحة البرنامج وهي ك استدعاء للفنكشن لما تنتقل من زر الى زر
+
+    def get_page(self, page_name):
+        page = self.pages[page_name]
+        page.tkraise()
+
+
+if __name__ == '__main__':
+    The_window = The_maneging_window()
+    The_window.geometry('1920x1080')
+    The_window.mainloop()
+
+
+
+Button(info_OF_frame, text='Banana', width=11, height=3).grid(row=3, column=1)
+        Button(info_OF_frame, text='Pineapple', width=11, height=3).grid(row=6, column=1)
+        Button(info_OF_frame, text='Blueberry', width=11, height=3).grid(row=9, column=1)
+        Button(info_OF_frame, text='Grape', width=11, height=3).grid(row=12, column=1)
+        Button(info_OF_frame, text='Mango', width=11, height=3).grid(row=0, column=5)
+        Button(info_OF_frame, text='raspberry', width=11, height=3).grid(row=3, column=5)
+        Button(info_OF_frame, text='Strawberry', width=11, height=3).grid(row=6, column=5)
+        Button(info_OF_frame, text='Orange', width=11, height=3).grid(row=9, column=5)
+        Button(info_OF_frame, text='Coconut', width=11, height=3).grid(row=12, column=5)
+        Button(info_OF_frame, text='Watermelon', width=11, height=3).grid(row=0, column=22)
+        Button(info_OF_frame, text='Sweet-melon', width=11, height=3).grid(row=3, column=22)
+        Button(info_OF_frame, text='Blackberry', width=11, height=3).grid(row=6, column=22)
+        Button(info_OF_frame, text='Peach', width=11, height=3).grid(row=9, column=22)
+        Button(info_OF_frame, text='Pear', width=11, height=3).grid(row=12, column=22)
